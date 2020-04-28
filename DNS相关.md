@@ -24,7 +24,7 @@ resolv-file=/etc/dnsmasq.d/upstream_dns.conf
 
 ### 3、可运行简易配置
 
-##### dnsmasq.conf
+##### /etc/dnsmasq.conf
 
 ```
 #dnsmasq config, for a complete example, see:
@@ -71,3 +71,16 @@ bind-interfaces
 nameserver 8.8.8.8
 ```
 
+### #坑
+
+- ##### DNS重启失效
+
+  修改网卡设置：
+  在/etc/sysconfig/network-scripts/ifcfg-eth0中修改内容：
+
+  ```
+  PEERDNS="yes"
+  DNS1="xxx.xxx.xxx.xxx"
+  ```
+
+  这种设置方案是以网卡中设置的DNS为主，resolv.conf中按照网卡设置的DNS内容自动生成，以后想修改DNS，必须修改网卡中的设置才不会在服务器重启之后出现DNS设置失效的问题。
