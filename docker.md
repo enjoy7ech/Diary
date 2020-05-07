@@ -97,6 +97,7 @@ gitlab-runner register \
  --non-interactive \
  --executor "docker" \
  --docker-image alpine:latest \
+ --docker-privileged \
  --url "https://os1.com/" \
  --registration-token "y_6sthX4mvh9MdyJEFpq" \
  --description "os2" \
